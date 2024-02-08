@@ -1,0 +1,23 @@
+<button (click)="createUser()">Crear usuario</button>
+<table style="width: 100%">
+  <thead>
+    <th>Nombres</th>
+    <th>Apellidos</th>
+    <th>Cedula</th>
+    <th>Fecha de nacimiento</th>
+    <th>usuario</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.names }}</td>
+      <td>{{ user.lastnames }}</td>
+      <td>{{ user.identityCard }}</td>
+      <td>{{ user.birthDate ? user.birthDate : "No hay fecha" }}</td>
+      <td>{{ user.username }}</td>
+      <td>
+        <button (click)="editUser(user)">Editar</button>
+        <button (click)="deleteUser(user)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

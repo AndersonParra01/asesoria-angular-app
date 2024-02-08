@@ -1,0 +1,22 @@
+<h1>Crear o editar usuario</h1>
+<form [formGroup]="userForm" (ngSubmit)="saveEditUser()">
+  <label for="">Nombres</label>
+  <input type="text" name="" id="" formControlName="names" /> <br />
+
+  <label for="">Apellidos</label>
+  <input type="text" name="" id="" formControlName="lastnames" /><br />
+
+  <label for="">Cedula</label>
+  <input type="text" name="" id="" formControlName="identityCard" /><br />
+
+  <label for="">Fecha Nacimiento</label>
+  <input type="date" name="" id="" formControlName="birthDate" /><br />
+
+  <label for="">Usuario</label>
+  <input type="text" name="" id="" formControlName="username" /><br />
+
+  <label for="">Contraseña</label>
+  <input type="text" name="" id="" formControlName="password" /><br />
+
+  <button type="submit">Guardar</button>
+</form>
