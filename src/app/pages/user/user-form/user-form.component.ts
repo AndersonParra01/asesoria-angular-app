@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class UserFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private message: MessageService,
+    private router: Router
   ) { }
   isEdit: boolean = false;
 
@@ -32,15 +35,15 @@ export class UserFormComponent implements OnInit {
         this.userService.getUserById(param.params.id).subscribe({
           next: (user: any) => {
             console.log(user);
-            this.userForm.patchValue(user)
-            this.isEdit = true
+            this.userForm.patchValue(user);
+            this.isEdit = true;
           },
           error: (err) => {
             console.log(err);
-          }
-        })
+          },
+        });
       }
-    })
+    });
   }
 
   saveEditUser() {
@@ -58,13 +61,20 @@ export class UserFormComponent implements OnInit {
         error: (error) => {
           console.log(error);
         },
-      })
+      });
     } else {
       console.log('Create');
       this.userService.createUser(values).subscribe({
         next: (res) => {
           console.log(res);
-          console.log('Created user success');
+          this.message.add({
+            severity: 'success',
+            summary: 'Usuario Creado',
+            detail: `${res.names}`,
+          });
+          setTimeout(() => {
+            this.router.navigate(['/users'])
+          }, 2000);
         },
         error: (error) => {
           console.log(error);

@@ -1,0 +1,81 @@
+<div
+  class="w-full top-0 shadow-lg text-white py-4"
+  style="background-color: #e40914"
+>
+  <div class="container mx-auto flex justify-between">
+    <div class="flex items-center">
+      <a class="text-xl rounded-md bg-zinc-800 py-2 px-2" routerLink="/"
+        >Streaming</a
+      >
+      <nav>
+        <ul class="md:flex items-center justify-between text-base pt-4 md:pt-0">
+          <li>
+            <a
+              class="inline-block hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
+              routerLink=""
+              >Inicio</a
+            >
+          </li>
+          <li>
+            <a
+              class="inline-block hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
+              routerLink="/movies"
+              >Peliculas</a
+            >
+          </li>
+<!-- 
+          <li *ngIf="user?.plan?.name === 'Avanzado'">
+            <a
+              class="inline-block hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
+              routerLink="/series"
+              >Series</a
+            >
+          </li> -->
+        </ul>
+      </nav>
+    </div>
+    <div class="flex gap-2 items-center">
+      <ng-container >
+        <!-- *ngIf="!user; else buttons" -->
+        <a routerLink="/register">
+          <span
+            class="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            style="background-color: #2d2d2d"
+          >
+            Crear cuenta
+          </span>
+        </a>
+        <a routerLink="/login">
+          <span
+            class="inline-block hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
+            >Iniciar Sesión</span
+          >
+        </a>
+      </ng-container>
+      <!-- <ng-template #buttons>
+        <h1>{{ user?.names }}</h1>
+        <h1>{{ user?.plan?.name }}</h1>
+        <button (click)="changeProfile()">
+          <span
+            class="hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+            style="background-color: #a00000"
+          >
+            <i class="pi pi-replay"></i>
+          </span>
+        </button>
+        <button (click)="logout()">
+          <span
+            class="hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+            style="background-color: #a00000"
+          >
+            Salir
+          </span>
+        </button>
+      </ng-template> -->
+    </div>
+  </div>
+</div>
+
+<div class="w-full h-screen">
+  <router-outlet></router-outlet>
+</div>

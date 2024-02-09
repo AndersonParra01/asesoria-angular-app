@@ -1,5 +1,45 @@
-<button (click)="createUser()">Crear usuario</button>
-<table style="width: 100%">
+<p-toast></p-toast>
+<div class="p-4">
+  <p-button (click)="createUser()">Crear usuario</p-button>
+
+  <div class="card">
+    <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Cedula</th>
+          <th>Fecha de nacimiento</th>
+          <th>usuario</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{ user.names }}</td>
+          <td>{{ user.lastnames }}</td>
+          <td>{{ user.identityCard }}</td>
+          <td>{{ user.birthDate ? user.birthDate : "No hay fecha" }}</td>
+          <td>{{ user.username }}</td>
+          <td>
+            <div class="flex flex-row">
+              <p-button (click)="editUser(user)" severity="warning"
+                >Editar</p-button
+              >
+              <p-button
+                class="ml-2"
+                (click)="deleteUser(user)"
+                severity="danger"
+                >Eliminar</p-button
+              >
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- <table style="width: 100%">
   <thead>
     <th>Nombres</th>
     <th>Apellidos</th>
@@ -20,4 +60,4 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
