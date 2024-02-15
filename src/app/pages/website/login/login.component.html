@@ -1,0 +1,10 @@
+<h1>Bienvenido</h1>
+<div class="p-fluid">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <label for="">Usuario</label>
+    <input type="text" formControlName="username" />
+    <label for="">Contraseña</label>
+    <input type="text" formControlName="password" />
+    <button>Iniciar sesion</button>
+  </form>
+</div>

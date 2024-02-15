@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { LayoutsModule } from './layouts/layouts.module';
+import { HttpInterceptorProviders } from './interceptors';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { LayoutsModule } from './layouts/layouts.module';
     LayoutsModule
 
   ],
-  providers: [MessageService],
+  providers: [MessageService, HttpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
