@@ -7,10 +7,9 @@ import { LoginComponent } from '../auth/login/login.component';
 import { AdministratorComponent } from './../../layouts/administrator/administrator.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: '', loadChildren: () => import('./../auth/auth.module').then((m) => m.AuthModule) },
   {
-    path: 'administrator',
+    path: '',
     component: AdministratorComponent,
     children: [
       { path: 'users', component: UserComponent },

@@ -1,1 +1,72 @@
-<p>login works!</p>
+<div
+  class="flex items-center justify-center h-screen"
+  style="background-color: rgb(239, 243, 248)"
+>
+  <div class="max-w-screen-lg mx-auto my-auto">
+    <div
+      class="bg-white p-20 rounded-lg flex flex-col md:flex-row items-center"
+      style="border-radius: 56px"
+    >
+      <div class="hidden md:block w-full md:w-1/2">
+        <img src="assets/logo.png" alt="Imagen" class="max-w-full h-auto" />
+      </div>
+      <div class="w-full md:w-1/2 mt-4 md:mt-0">
+        <div class="text-center mb-5">
+          <h1 class="text-3xl font-semibold">Bienvenido</h1>
+          <h2 class="text-gray-500">Iniciar sesión</h2>
+        </div>
+        <div class="p-fluid">
+          <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="m-4">
+            <div class="field mb-4">
+              <label for="username" appLabel label="Usuario:"></label>
+              <!-- [required]="isRequired(usernameField)"
+                [valid]="usernameField.valid"
+                [touched]="usernameField.touched"
+                [dirty]="usernameField.dirty" -->
+              <input
+                pInputText
+                id="username"
+                formControlName="username"
+                placeholder="Ingrese su usuario"
+              />
+              <small appErrorMessage>
+                <!-- [errors]="usernameField.errors"
+                [touched]="usernameField.touched"
+                [dirty]="usernameField.dirty" -->
+              </small>
+            </div>
+            <div class="field mb-4">
+              <label for="password" appLabel label="Contraseña:"></label>
+              <!-- [required]="isRequired(passwordField)"
+                [valid]="passwordField.valid"
+                [touched]="passwordField.touched"
+                [dirty]="passwordField.dirty" -->
+              <p-password
+                id="password"
+                name="password"
+                formControlName="password"
+                placeholder="Ingrese su contraseña"
+                [feedback]="false"
+                [toggleMask]="true"
+              ></p-password>
+              <small appErrorMessage>
+                <!-- [errors]="passwordField.errors"
+                [touched]="passwordField.touched"
+                [dirty]="passwordField.dirty" -->
+              </small>
+            </div>
+            <p-divider></p-divider>
+            <div class="mb-2">
+              <button
+                pButton
+                label="Ingresar"
+                class="p-button-rounded w-full"
+                [icon]="loading ? 'pi pi-spin pi-spinner' : 'pi pi-sign-in'"
+              ></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
