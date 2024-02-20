@@ -1,8 +1,7 @@
-<p-toast></p-toast>
 <div class="p-4">
   <h1 class="text-2xl text-center">Crear o editar usuario</h1>
   <div class="p-fluid">
-    <form [formGroup]="userForm" (ngSubmit)="saveEditUser()">
+    <!-- <form [formGroup]="userForm" (ngSubmit)="saveEditUser()">
       <label for="">Nombres</label>
       <input pInputText type="text" name="" id="" formControlName="names" />
 
@@ -26,9 +25,18 @@
 
       <label for="">Contraseña</label>
 
-      <p-password formControlName="password" [feedback]="true" [toggleMask]="true"></p-password>
-     
+      <p-password
+        formControlName="password"
+        [feedback]="true"
+        [toggleMask]="true"
+      ></p-password>
+
       <p-button class="mt-4" type="submit">Guardar</p-button>
-    </form>
+    </form> -->
   </div>
+
+  <app-dinamyc-form
+    [fields]="formFields"
+    (formSubmit)="handleSubmit($event)"
+  ></app-dinamyc-form>
 </div>

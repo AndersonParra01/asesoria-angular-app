@@ -11,6 +11,10 @@ import { MessageService } from 'primeng/api';
 import { LayoutsModule } from './layouts/layouts.module';
 import { HttpInterceptorProviders } from './interceptors';
 
+//Components PrimeNg Global
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+
 
 @NgModule({
   declarations: [
@@ -23,8 +27,9 @@ import { HttpInterceptorProviders } from './interceptors';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    LayoutsModule
-
+    LayoutsModule,
+    ToastModule,
+    MessagesModule
   ],
   providers: [MessageService, HttpInterceptorProviders],
   bootstrap: [AppComponent]

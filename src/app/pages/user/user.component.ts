@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
   }
 
   createUser() {
-    this.router.navigate(['/users/create'])
+    this.router.navigate(['/administrator/users/create'])
     console.log('create user');
   }
 
@@ -45,7 +45,7 @@ export class UserComponent implements OnInit {
   }
 
   editUser(user: User) {
-    this.router.navigate([`/users/edit/${user.id}`])
+    this.router.navigate([`/administrator/users/edit/${user.id}`])
   }
 
   deleteUser(user: User) {

@@ -8,7 +8,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 //Componentes de PRIMENG
-
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { SharedModule } from '@shared/shared.module';
+import { DividerModule } from 'primeng/divider';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [
@@ -18,7 +24,14 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     WebsiteRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PasswordModule,
+    InputTextModule,
+    ButtonModule,
+    SharedModule,
+    DividerModule,
+    ToastModule,
+    MessagesModule
   ]
 })
 export class WebsiteModule { }

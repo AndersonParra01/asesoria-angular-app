@@ -14,10 +14,13 @@ import { CalendarModule } from 'primeng/calendar';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { DinamycFormComponent } from './dinamyc-form/dinamyc-form.component';
+
 
 @NgModule({
-  declarations: [UserComponent, UserFormComponent],
+  declarations: [UserComponent, UserFormComponent, HomeComponent, DinamycFormComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -28,7 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     PasswordModule,
     ToastModule,
     MessagesModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    FormsModule
+  ],
+  exports: [DinamycFormComponent]
 })
 export class UserModule { }

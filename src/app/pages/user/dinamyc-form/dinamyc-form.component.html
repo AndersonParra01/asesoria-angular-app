@@ -1,0 +1,14 @@
+<div class="p-fluid">
+  <form (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of fields">
+      <label>{{ field.label }}</label>
+      <input
+        pInputText
+        [type]="field.type"
+        [(ngModel)]="formData[field.label]"
+        name="{{ field.label }}"
+      />
+    </div>
+    <p-button class="mt-4" type="submit">Guardar</p-button>
+  </form>
+</div>

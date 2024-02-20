@@ -38,10 +38,16 @@ export class LoginComponent {
     this.loading = true;
     const userValue = this.formLogin.value;
     this.authService.login(userValue).subscribe({
-      next: (user) => {
+      next: (user: Token) => {
         if (user) {
           console.log('EJECUTANDO', user);
-          this.redirect(user)
+          switch (user.role) {
+            case 'administrator':
+              this.router.navigate(['/administrator/home']);
+              break;
+            default:
+              this.router.navigate(['/administrator/not-found']);
+          }
           this.loading = false;
         }
       },
@@ -50,22 +56,11 @@ export class LoginComponent {
         this.loading = false;
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: `${error.error.message}`
+          summary: 'Usuario inautorizado',
+          detail: `${error.status}`
         })
       },
     });
-  }
-
-  redirect(user: Token) {
-    // console.log('redirect ', user.role);
-    // switch (user.role) {
-    //   case 'administrator':
-    //     this.router.navigate(['/administrator/home']);
-    //     break;
-    //   default:
-    //     this.router.navigate(['/not-found']);
-    // }
   }
 
   onSubmit() {

@@ -3,21 +3,25 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from 'src/app/core/not-found/not-found.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserComponent } from './user.component';
-import { LoginComponent } from '../auth/login/login.component';
 import { AdministratorComponent } from './../../layouts/administrator/administrator.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./../auth/auth.module').then((m) => m.AuthModule) },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', loadChildren: () => import('./../auth/auth.module').then((m) => m.AuthModule) },
   {
     path: '',
     component: AdministratorComponent,
     children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
       { path: 'users', component: UserComponent },
       { path: 'users/create', component: UserFormComponent },
       { path: 'users/edit/:id', component: UserFormComponent },
       { path: '**', component: NotFoundComponent }
     ]
-  }
+  },
+
 ];
 
 

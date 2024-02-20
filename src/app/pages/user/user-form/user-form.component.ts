@@ -46,6 +46,16 @@ export class UserFormComponent implements OnInit {
     });
   }
 
+
+  formFields = [
+    { label: 'Name', type: 'text' },
+    { label: 'Email', type: 'email' },
+  ];
+
+  handleSubmit(formData: any) {
+    console.log('User form submitted with data:', formData);
+  }
+
   saveEditUser() {
     const values = this.userForm.value;
     console.log(values);
