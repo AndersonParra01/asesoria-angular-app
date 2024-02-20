@@ -5,7 +5,6 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { UserFormComponent } from './user-form/user-form.component';
 
-
 //PrimeNG Components
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';

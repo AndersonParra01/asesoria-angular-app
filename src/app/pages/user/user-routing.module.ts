@@ -5,6 +5,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserComponent } from './user.component';
 import { AdministratorComponent } from './../../layouts/administrator/administrator.component';
 import { HomeComponent } from './home/home.component';
+import { PadreComponent } from '@shared/components/padre/padre.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: 'users', component: UserComponent },
+      // { path: 'users', component: UserComponent },
+      { path: 'users', component: PadreComponent },
       { path: 'users/create', component: UserFormComponent },
       { path: 'users/edit/:id', component: UserFormComponent },
       { path: '**', component: NotFoundComponent }

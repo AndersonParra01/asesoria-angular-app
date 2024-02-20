@@ -1,0 +1,11 @@
+<div class="bg-green-400">
+  <div class="card">
+    <p-tabView>
+      <p-tabPanel *ngFor="let tab of tabs" [header]="tab.title">
+        <app-prueba1 *ngIf="tab.id === 4"></app-prueba1>
+        <p *ngIf="tab.id === 2">Panel 2</p>
+        <p *ngIf="tab.id === 3">Panel 3</p>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

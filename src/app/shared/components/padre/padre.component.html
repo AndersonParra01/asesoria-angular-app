@@ -1,0 +1,27 @@
+<div class="bg-blue-500">
+  <!-- <p>COMPONENTE PADRE</p>
+  <p class="text-2xl">Comunicacion entre componente padre a hijo</p>
+  <app-hijo-test
+    [childValue]="message"
+    [sentValueFunction]="total"
+    (childEvent)="obtenerMensajedelHijo($event)"
+  ></app-hijo-test>
+
+  <p-button label="Suma" (click)="sumTotal()" severity="warning"> </p-button>
+
+  <p class="text-2xl">Comunicacion entre hijo y padre</p>
+  <h1>Mensaje desde hijo es: {{ messageFromChild }}</h1> -->
+
+  <p-button severity="danger" (click)="addTab()">Agregar un tab</p-button>
+
+  <app-hijo-test [addTab]="tabs"></app-hijo-test>
+
+  <!-- 
+
+  Padre: Aplicacion principal
+  Hijo: Tabs
+
+  funcion: 
+
+ -->
+</div>
