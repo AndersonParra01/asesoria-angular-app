@@ -16,8 +16,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      // { path: 'users', component: UserComponent },
-      { path: 'users', component: PadreComponent },
+      { path: 'users', component: UserComponent },
+      // { path: 'users', component: PadreComponent },
       { path: 'users/create', component: UserFormComponent },
       { path: 'users/edit/:id', component: UserFormComponent },
       { path: '**', component: NotFoundComponent }

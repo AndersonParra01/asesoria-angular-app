@@ -1,42 +1,8 @@
 <div class="p-4">
   <h1 class="text-2xl text-center">Crear o editar usuario</h1>
-  <div class="p-fluid">
-    <!-- <form [formGroup]="userForm" (ngSubmit)="saveEditUser()">
-      <label for="">Nombres</label>
-      <input pInputText type="text" name="" id="" formControlName="names" />
-
-      <label for="">Apellidos</label>
-      <input pInputText type="text" name="" id="" formControlName="lastnames" />
-
-      <label for="">Cedula</label>
-      <input
-        pInputText
-        type="text"
-        name=""
-        id=""
-        formControlName="identityCard"
-      />
-
-      <label for="">Fecha Nacimiento</label>
-      <p-calendar formControlName="birthDate" [showIcon]="true"></p-calendar>
-
-      <label for="">Usuario</label>
-      <input pInputText type="text" name="" id="" formControlName="username" />
-
-      <label for="">Contraseña</label>
-
-      <p-password
-        formControlName="password"
-        [feedback]="true"
-        [toggleMask]="true"
-      ></p-password>
-
-      <p-button class="mt-4" type="submit">Guardar</p-button>
-    </form> -->
-  </div>
-
   <app-dinamyc-form
-    [fields]="formFields"
+    [form]="userForm"
     (formSubmit)="handleSubmit($event)"
+    [formConfig]="formConfig"
   ></app-dinamyc-form>
 </div>

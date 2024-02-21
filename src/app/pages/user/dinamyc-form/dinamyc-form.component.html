@@ -1,14 +1,45 @@
 <div class="p-fluid">
-  <form (ngSubmit)="onSubmit()">
-    <div *ngFor="let field of fields">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of formConfig">
       <label>{{ field.label }}</label>
-      <input
-        pInputText
-        [type]="field.type"
-        [(ngModel)]="formData[field.label]"
-        name="{{ field.label }}"
-      />
+
+      <ng-container [ngSwitch]="field.type">
+        <ng-container *ngSwitchCase="'text'">
+          <input pInputText [formControlName]="field.controlName" />
+        </ng-container>
+        <ng-container *ngSwitchCase="'date'">
+          <p-calendar [formControlName]="field.controlName"></p-calendar>
+        </ng-container>
+        <ng-container *ngSwitchCase="'password'">
+          <p-password
+            [formControlName]="field.controlName"
+            [toggleMask]="true"
+          ></p-password>
+        </ng-container>
+        <ng-container *ngSwitchCase="'dropdown'">
+          <!-- <p-dropdown
+            [options]="cities"
+            [(ngModel)]="selectedCity"
+            optionLabel="name"
+            [showClear]="true"
+            placeholder="Select a City"
+          ></p-dropdown> -->
+        </ng-container>
+      </ng-container>
+      <p
+        *ngIf="
+          form.get(field.controlName)!.invalid &&
+          form.get(field.controlName)!.touched
+        "
+        class="text-red-600"
+      >
+        Campo obligatorio
+      </p>
     </div>
     <p-button class="mt-4" type="submit">Guardar</p-button>
   </form>
 </div>
+
+<pre>
+  {{ form.value | json }}
+</pre>

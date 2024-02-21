@@ -1,9 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RolService } from '@service/rol.service';
 import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
 
+interface FieldConfig {
+  label: string;
+  controlName: string;
+  type: string;
+  value?: any;
+  validators?: ValidatorFn[];
+}
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
@@ -15,18 +28,43 @@ export class UserFormComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private message: MessageService,
-    private router: Router
-  ) { }
-  isEdit: boolean = false;
+    private router: Router,
+    private rolService: RolService
+  ) {
+    this.userForm = this.createForm();
+  }
 
-  userForm = this.fb.group({
-    names: [''],
-    lastnames: [''],
-    identityCard: [''],
-    birthDate: [''],
-    username: [''],
-    password: [''],
-  });
+  isEdit: boolean = false;
+  userForm!: FormGroup;
+
+  formConfig: FieldConfig[] = [
+    { label: 'Nombres', controlName: 'names', type: 'text', value: '', validators: [Validators.required] },
+    { label: 'Apellidos', controlName: 'lastnames', type: 'text', value: '', validators: [Validators.required] },
+    { label: 'Cedula', controlName: 'identityCard', type: 'text', value: '', validators: [Validators.required] },
+    {
+      label: 'Fecha Nacimiento',
+      controlName: 'birthDate',
+      type: 'date',
+      value: '',
+      // validators: [Validators],
+      validators: [Validators.required]
+    },
+    { label: 'Usuario', controlName: 'username', type: 'text', value: '', validators: [Validators.required] },
+    {
+      label: 'Contraseña',
+      controlName: 'password',
+      type: 'password',
+      value: '',
+      validators: [Validators.required]
+    },
+    {
+      label: 'Rol',
+      controlName: 'role',
+      type: 'dropdown',
+      value: null,
+      validators: [Validators.required]
+    }
+  ];
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((param: any) => {
@@ -44,13 +82,30 @@ export class UserFormComponent implements OnInit {
         });
       }
     });
+    this.getAllRoles()
   }
 
+  createForm() {
+    const formGroup = this.fb.group({});
+    this.formConfig.forEach((field) => {
+      formGroup.addControl(
+        field.controlName,
+        this.fb.control(field.value, field.validators)
+      );
+    });
+    return formGroup;
+  }
 
-  formFields = [
-    { label: 'Name', type: 'text' },
-    { label: 'Email', type: 'email' },
-  ];
+  getAllRoles() {
+    this.rolService.getAllRoles().subscribe({
+      next: (roles) => {
+        console.log(roles);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
 
   handleSubmit(formData: any) {
     console.log('User form submitted with data:', formData);
@@ -83,7 +138,7 @@ export class UserFormComponent implements OnInit {
             detail: `${res.names}`,
           });
           setTimeout(() => {
-            this.router.navigate(['/users'])
+            this.router.navigate(['/users']);
           }, 2000);
         },
         error: (error) => {

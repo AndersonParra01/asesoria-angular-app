@@ -16,6 +16,7 @@ import { MessagesModule } from 'primeng/messages';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { DinamycFormComponent } from './dinamyc-form/dinamyc-form.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { DinamycFormComponent } from './dinamyc-form/dinamyc-form.component';
     ToastModule,
     MessagesModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DropdownModule
   ],
   exports: [DinamycFormComponent]
 })
