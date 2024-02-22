@@ -17,10 +17,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { DinamycFormComponent } from './dinamyc-form/dinamyc-form.component';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { RoleComponent } from './role/role.component';
+import { RoleFormComponent } from './role/role-form/role-form.component';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
-  declarations: [UserComponent, UserFormComponent, HomeComponent, DinamycFormComponent],
+  declarations: [
+    UserComponent,
+    UserFormComponent,
+    HomeComponent,
+    DinamycFormComponent,
+    RoleComponent,
+    RoleFormComponent,
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -33,8 +42,9 @@ import { DropdownModule } from 'primeng/dropdown';
     MessagesModule,
     ReactiveFormsModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
+    DialogModule,
   ],
-  exports: [DinamycFormComponent]
+  exports: [DinamycFormComponent],
 })
 export class UserModule { }

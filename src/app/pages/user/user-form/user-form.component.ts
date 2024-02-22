@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -6,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Rol } from '@model/rol.model';
+import { User } from '@model/user.model';
 import { RolService } from '@service/rol.service';
 import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
@@ -36,7 +39,7 @@ export class UserFormComponent implements OnInit {
 
   isEdit: boolean = false;
   userForm!: FormGroup;
-
+  roles: Rol[] = []
   formConfig: FieldConfig[] = [
     { label: 'Nombres', controlName: 'names', type: 'text', value: '', validators: [Validators.required] },
     { label: 'Apellidos', controlName: 'lastnames', type: 'text', value: '', validators: [Validators.required] },
@@ -73,7 +76,18 @@ export class UserFormComponent implements OnInit {
         this.userService.getUserById(param.params.id).subscribe({
           next: (user: any) => {
             console.log(user);
-            this.userForm.patchValue(user);
+            const patchedValue = {
+              ...user,
+              // birthDate: new Date(user.birthDate)
+            }
+            patchedValue.birthDate = formatDate(
+              patchedValue.birthDate,
+              'yyyy-MM-dd',
+              'en-US'
+            )
+
+            console.log('PAPTCED', patchedValue.birthDate);
+            this.userForm.patchValue(patchedValue);
             this.isEdit = true;
           },
           error: (err) => {
@@ -99,7 +113,8 @@ export class UserFormComponent implements OnInit {
   getAllRoles() {
     this.rolService.getAllRoles().subscribe({
       next: (roles) => {
-        console.log(roles);
+        this.roles = roles
+        console.log('ALL ROLES', roles);
       },
       error: (err) => {
         console.log(err);
@@ -107,18 +122,13 @@ export class UserFormComponent implements OnInit {
     })
   }
 
-  handleSubmit(formData: any) {
-    console.log('User form submitted with data:', formData);
-  }
-
-  saveEditUser() {
-    const values = this.userForm.value;
-    console.log(values);
+  saveEditUser(user: User) {
+    console.log(user);
     if (this.isEdit) {
       const idParam = this.route.snapshot.paramMap.get('id');
       const id = parseInt(idParam!, 10);
       console.log('Edit');
-      this.userService.editUserById(id, values).subscribe({
+      this.userService.editUserById(id, user).subscribe({
         next: (res) => {
           console.log(res);
           console.log('Edit user success');
@@ -129,7 +139,7 @@ export class UserFormComponent implements OnInit {
       });
     } else {
       console.log('Create');
-      this.userService.createUser(values).subscribe({
+      this.userService.createUser(user).subscribe({
         next: (res) => {
           console.log(res);
           this.message.add({
@@ -138,7 +148,7 @@ export class UserFormComponent implements OnInit {
             detail: `${res.names}`,
           });
           setTimeout(() => {
-            this.router.navigate(['/users']);
+            this.router.navigate(['/administrator/users']);
           }, 2000);
         },
         error: (error) => {

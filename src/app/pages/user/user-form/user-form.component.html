@@ -2,7 +2,8 @@
   <h1 class="text-2xl text-center">Crear o editar usuario</h1>
   <app-dinamyc-form
     [form]="userForm"
-    (formSubmit)="handleSubmit($event)"
-    [formConfig]="formConfig"
+    (formSubmit)="saveEditUser($event)"
+    [formConfigs]="formConfig"
+    [allRoles]="roles"
   ></app-dinamyc-form>
 </div>

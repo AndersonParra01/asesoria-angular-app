@@ -1,0 +1,24 @@
+<div class="p-4">
+  ESTADO DEL MODAL: {{ isVisible }}
+  <app-role-form
+    [showModal]="isVisible"
+    (clickClose)="closeModal($event)"
+  ></app-role-form>
+  <p-button label="Crear rol" (click)="showDialog()"></p-button>
+  <p-table [value]="roles" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Fecha Creacion</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rol>
+      <tr>
+        <td>{{ rol.name }}</td>
+        <td>{{ rol.description }}</td>
+        <td>{{ rol.createdAt | date }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { Rol } from '@model/rol.model';
 
 interface FormField {
   label: string;
@@ -21,8 +22,9 @@ interface FieldConfig {
 })
 export class DinamycFormComponent {
   @Input() form!: FormGroup;
-  @Input() formConfig: FieldConfig[] = [];
+  @Input() formConfigs: FieldConfig[] = [];
   @Output() formSubmit = new EventEmitter<any>();
+  @Input() allRoles: Rol[] = [];
 
   formData: any = {};
 

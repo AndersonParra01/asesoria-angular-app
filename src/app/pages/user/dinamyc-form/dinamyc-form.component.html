@@ -1,14 +1,16 @@
 <div class="p-fluid">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div *ngFor="let field of formConfig">
+    <div *ngFor="let field of formConfigs">
       <label>{{ field.label }}</label>
-
       <ng-container [ngSwitch]="field.type">
         <ng-container *ngSwitchCase="'text'">
           <input pInputText [formControlName]="field.controlName" />
         </ng-container>
         <ng-container *ngSwitchCase="'date'">
-          <p-calendar [formControlName]="field.controlName"></p-calendar>
+          <p-calendar
+            [formControlName]="field.controlName"
+            dateFormat="yy-mm-dd"
+          ></p-calendar>
         </ng-container>
         <ng-container *ngSwitchCase="'password'">
           <p-password
@@ -17,13 +19,12 @@
           ></p-password>
         </ng-container>
         <ng-container *ngSwitchCase="'dropdown'">
-          <!-- <p-dropdown
-            [options]="cities"
-            [(ngModel)]="selectedCity"
+          <p-dropdown
+            [options]="allRoles"
+            [formControlName]="field.controlName"
             optionLabel="name"
             [showClear]="true"
-            placeholder="Select a City"
-          ></p-dropdown> -->
+          ></p-dropdown>
         </ng-container>
       </ng-container>
       <p
@@ -39,7 +40,7 @@
     <p-button class="mt-4" type="submit">Guardar</p-button>
   </form>
 </div>
-
+<!-- 
 <pre>
   {{ form.value | json }}
-</pre>
+</pre> -->

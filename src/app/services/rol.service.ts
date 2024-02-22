@@ -7,13 +7,18 @@ import { Rol } from '@model/rol.model';
   providedIn: 'root'
 })
 export class RolService {
-  private apiUrl = `${environment.api}/rol`
+  private apiUrl = `${environment.api}/roles`
   constructor(
     private http: HttpClient
   ) { }
 
-
   getAllRoles() {
     return this.http.get<Rol[]>(this.apiUrl);
   }
+
+  //TODO
+  //Obtener por Id
+  //Crear
+  //Ediar por Id
+  //Eliminar por Id
 }
