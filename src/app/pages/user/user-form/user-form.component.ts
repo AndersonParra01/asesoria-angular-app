@@ -7,19 +7,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FieldConfig } from '@model/fieldConfig.model';
 import { Rol } from '@model/rol.model';
 import { User } from '@model/user.model';
 import { RolService } from '@service/rol.service';
 import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
 
-interface FieldConfig {
-  label: string;
-  controlName: string;
-  type: string;
-  value?: any;
-  validators?: ValidatorFn[];
-}
+
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
@@ -42,7 +37,7 @@ export class UserFormComponent implements OnInit {
   roles: Rol[] = []
   formConfig: FieldConfig[] = [
     { label: 'Nombres', controlName: 'names', type: 'text', value: '', validators: [Validators.required] },
-    { label: 'Apellidos', controlName: 'lastnames', type: 'text', value: '', validators: [Validators.required] },
+    { label: 'Apellidos', controlName: 'lastnames', type: 'text', value: '' },
     { label: 'Cedula', controlName: 'identityCard', type: 'text', value: '', validators: [Validators.required] },
     {
       label: 'Fecha Nacimiento',

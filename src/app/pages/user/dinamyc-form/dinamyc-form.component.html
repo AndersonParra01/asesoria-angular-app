@@ -26,6 +26,9 @@
             [showClear]="true"
           ></p-dropdown>
         </ng-container>
+        <ng-container *ngSwitchCase="'number'">
+          <p>Esto deberia aparecer un componente NUMBER</p>
+        </ng-container>
       </ng-container>
       <p
         *ngIf="
@@ -40,7 +43,7 @@
     <p-button class="mt-4" type="submit">Guardar</p-button>
   </form>
 </div>
-<!-- 
+
 <pre>
   {{ form.value | json }}
-</pre> -->
+</pre>

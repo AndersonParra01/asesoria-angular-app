@@ -5,14 +5,15 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserComponent } from './user.component';
 import { AdministratorComponent } from './../../layouts/administrator/administrator.component';
 import { HomeComponent } from './home/home.component';
-import { PadreComponent } from '@shared/components/padre/padre.component';
 import { RoleComponent } from './role/role.component';
+import { isTokenGuard } from '@guard/is-token.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: () => import('./../auth/auth.module').then((m) => m.AuthModule) },
   {
     path: '',
+    canActivate: [isTokenGuard], //guardian
     component: AdministratorComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,7 +26,6 @@ const routes: Routes = [
       { path: '**', component: NotFoundComponent }
     ]
   },
-
 ];
 
 

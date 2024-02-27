@@ -8,6 +8,9 @@
   (onHide)="closeModal()"
 >
   <h1>Roles</h1>
-
-  <!-- <app-dinamyc-form></app-dinamyc-form> -->
+  <app-dinamyc-form
+    [form]="roleForm"
+    (formSubmit)="saveEditRole($event)"
+    [formConfigs]="formConfig"
+  ></app-dinamyc-form>
 </p-dialog>

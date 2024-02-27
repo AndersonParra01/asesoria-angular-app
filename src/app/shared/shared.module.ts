@@ -12,6 +12,7 @@ import { HijoComponent } from './components/hijo/hijo.component'
 import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { Prueba1Component } from './components/prueba1/prueba1.component';
+import { FormatDatePipe } from './pipes/format-date.pipe';
 
 @NgModule({
   declarations: [
@@ -20,15 +21,15 @@ import { Prueba1Component } from './components/prueba1/prueba1.component';
     TopbarComponent,
     PadreComponent,
     HijoComponent,
-    Prueba1Component
+    Prueba1Component,
+    FormatDatePipe
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     ButtonModule,
     TabViewModule
-
   ],
-  exports: [SidebarComponent, TopbarComponent]
+  exports: [SidebarComponent, TopbarComponent, FormatDatePipe]
 })
 export class SharedModule { }

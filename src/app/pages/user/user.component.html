@@ -18,7 +18,7 @@
           <td>{{ user.names }}</td>
           <td>{{ user.lastnames }}</td>
           <td>{{ user.identityCard }}</td>
-          <td>{{ user.birthDate ? user.birthDate : "No hay fecha" }}</td>
+          <td>{{ user.birthDate | formatDate }}</td>
           <td>{{ user.username }}</td>
           <td>
             <div class="flex flex-row">

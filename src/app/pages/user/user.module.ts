@@ -20,6 +20,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RoleComponent } from './role/role.component';
 import { RoleFormComponent } from './role/role-form/role-form.component';
 import { DialogModule } from 'primeng/dialog';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DialogModule } from 'primeng/dialog';
     FormsModule,
     DropdownModule,
     DialogModule,
+    SharedModule
   ],
   exports: [DinamycFormComponent],
 })
