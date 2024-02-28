@@ -4,6 +4,7 @@
     [showModal]="isVisible"
     (clickClose)="closeModal($event)"
     [selectRole]="selectedRole"
+    (addRole)="addRol($event)"
   ></app-role-form>
   <p-button label="Crear rol" (click)="showDialog()"></p-button>
   <p-table [value]="roles" [tableStyle]="{ 'min-width': '50rem' }">

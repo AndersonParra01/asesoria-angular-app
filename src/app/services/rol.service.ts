@@ -27,12 +27,23 @@ export class RolService {
   }
   //Ediar por Id
 
-  editRoleById(id: number, newRole: Rol) {
+  editRoleById(id: number | undefined, newRole: Rol) {
     return this.http.put<Rol>(`${this.apiUrl}/${id}`, newRole)
   }
   //Eliminar por Id
 
   deleteRoleById(id: number) {
-    return this.http.delete<Rol>(`${this.apiUrl}`)
+    return this.http.delete<Rol>(`${this.apiUrl}/${id}`,)
+  }
+
+  isEditSave(state: boolean, role: Rol, selectedRoleId: number | undefined) {
+    console.log('SERVICE ROLE', role);
+    if (state) {
+      console.log('Edit');
+      return this.http.put<Rol>(`${this.apiUrl}/${selectedRoleId}`, role)
+    } else {
+      console.log('Save');
+      return this.http.post<Rol>(`${this.apiUrl}/create`, role)
+    }
   }
 }

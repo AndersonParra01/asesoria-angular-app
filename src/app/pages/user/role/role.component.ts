@@ -41,9 +41,13 @@ export class RoleComponent implements OnInit {
   }
 
   editRole(role: Rol) {
-    //TODO
     this.isVisible = true;
     this.selectedRole = role;
+  }
+
+  addRol(rol: Rol) {
+    console.log('C.PADRE LISTEN', rol);
+    this.getAllRoles()
   }
 
   deleteRole(role: Rol) {
@@ -51,6 +55,19 @@ export class RoleComponent implements OnInit {
       `Estas seguro de eliminar el rol: ` + role.name
     );
     if (confirmation) {
+      this.rolesService.deleteRoleById(role.id!).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.message.add({
+            severity: 'success',
+            summary: 'Eliminacion exitosa',
+          });
+          this.getAllRoles();
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
     } else {
       this.message.add({
         severity: 'info',

@@ -17,7 +17,9 @@ export class RoleFormComponent implements OnChanges {
   @Input() showModal: boolean = false;
   @Output() clickClose = new EventEmitter<boolean>()
   @Input() selectRole!: Rol | null;
+  @Output() addRole = new EventEmitter<Rol>
   roleForm!: FormGroup;
+  isEdit: boolean = false;
 
   formConfig: FieldConfig[] = [
     { label: 'Nombre', controlName: 'name', type: 'text', value: '', validators: [Validators.required] },
@@ -26,15 +28,51 @@ export class RoleFormComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.selectRole) {
-      //EDITAR
+      //EDIT
+      this.isEdit = true;
+      console.log('ONCHANGE EDIT', this.selectRole);
+      this.roleForm.patchValue(this.selectRole);
     } else {
-      //CREAR
+      //CREATE
+      this.roleForm.reset();
+      this.isEdit = false;
     }
   }
 
   saveEditRole(role: Rol) {
-    console.log(role);
-    //TODO
+    this.roleService.isEditSave(this.isEdit, role, this.selectRole?.id).subscribe({
+      next: (newRole) => {
+        //cierra el modal
+        this.clickClose.emit(false);
+        //emitir un evento para decirle al componente padre que ya hay nueva informacion
+        this.addRole.emit(newRole)
+        this.roleForm.reset();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+    console.log('DATA RECEP', role);
+    // if (this.isEdit) {
+    //   console.log('EDIT');
+
+    // } else {
+    //   console.log('CREATE');
+    //   this.roleService.createRole(role).subscribe({
+    //     next: (newRole) => {
+    //       //cierra el modal
+    //       this.clickClose.emit(false);
+    //       //emitir un evento para decirle al componente padre que ya hay nueva informacion
+    //       this.addRole.emit(newRole)
+    //       this.roleForm.reset();
+    //     },
+    //     error: (err) => {
+    //       console.log(err);
+    //     }
+    //   })
+    // }
+
+
   }
 
 
